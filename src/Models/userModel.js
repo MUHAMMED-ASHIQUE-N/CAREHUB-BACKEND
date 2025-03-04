@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     phoneNumber: { type: Number, required: true },
     password: { type: String, required: true },
-    RememberMe: { type: String, required: true },
+    RememberMe: { type: String },
+    role:{ type: String, required: true, enum: ["admin", "doctor", "pharmacy", "patient" ] }
   },
   { collation: { locale: 'en', strength: 2 } },
 
