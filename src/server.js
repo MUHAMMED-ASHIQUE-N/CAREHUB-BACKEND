@@ -13,8 +13,11 @@ app.use(cors());
 connectDB();
 
 
+
 //routes
 app.use('/api', apiRouter)
+app.use("/uploads", express.static("uploads"));
+
 
 
 //start server

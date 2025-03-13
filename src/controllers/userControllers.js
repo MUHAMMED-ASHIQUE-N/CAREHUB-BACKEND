@@ -2,13 +2,16 @@
   const jwt = require("jsonwebtoken");
   const User = require("../Models/userModel");
   const dotenv = require("dotenv").config();
-
+const Doctor = require('../Models/doctorModel')
 
 const register = async (req, res) => {
   try {
     const { firstName, secondName, email, phoneNumber, password, RememberMe, role } =
       req.body;
 
+
+
+      
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
@@ -29,6 +32,7 @@ const register = async (req, res) => {
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
     console.error(err);
+
     res.status(500).json({ error: err.message || "Internal server error" });
   }
 };
@@ -37,7 +41,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }) || Doctor.findOne({email})   
     if (!user)
       return res.status(404).json({ message: "Invalid email or password" });
 
@@ -51,13 +55,7 @@ const login = async (req, res) => {
 
    res.status(200).json({
      message: "Login successful",
-     token,
-     user: {
-       id: user._id,
-       role: user.role,
-       firstName: user.firstName,
-       email: user.email,
-     },
+     token, user,
    });
 
   } catch (err) {
