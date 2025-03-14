@@ -17,7 +17,8 @@ const addDoctor = async (req, res) => {
       fees,
       password,
     } = req.body;
-    const image = req.file ? req.file.path : ""; // Ensure `image` is always set
+const image = req.file ? "uploads/" + req.file.filename : "";
+
 
     const existingDoctor = await Doctor.findOne({ email });
     if (existingDoctor) {

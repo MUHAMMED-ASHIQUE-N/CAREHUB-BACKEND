@@ -3,6 +3,7 @@ const cors = require("cors");
 const connectDB = require("./config/db.js");
 const { apiRouter } = require("./routes/index.js");
 const dotenv = require("dotenv").config()
+const path = require('path');
 const app = express();
 
 
@@ -16,7 +17,13 @@ connectDB();
 
 //routes
 app.use('/api', apiRouter)
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
+
+
+
 
 
 
