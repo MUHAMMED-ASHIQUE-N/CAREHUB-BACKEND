@@ -8,6 +8,9 @@
       phoneNumber: { type: Number, required: true },
       password: { type: String, required: true },
       RememberMe: { type: String },
+      userImage: {type:String},
+      gender: {type:String},
+      adress: {type:String},
       role:{ type: String, required: true, enum: ["admin", "doctor", "pharmacy", "patient" ] }
     },
     { collation: { locale: 'en', strength: 2 } },

@@ -5,7 +5,7 @@ const {upload} = require('../middlewares/fileUploadMiddleware')
 
 const addDoctor = async (req, res) => {
   try {
-    console.log("Received Request Body:", req.body); // Debugging Step
+    console.log("Received Request Body:", req.body); 
 
     const {
       name,
