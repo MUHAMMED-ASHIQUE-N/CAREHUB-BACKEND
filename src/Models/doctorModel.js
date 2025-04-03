@@ -17,7 +17,6 @@ const DoctorSchema = new mongoose.Schema(
     slots_booked: { type: Object, default: {} },
     role: {
       type: String,
-      required: true,
       enum: ["admin", "doctor", "pharmacy", "patient"],
     },
   },

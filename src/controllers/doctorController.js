@@ -50,7 +50,7 @@ const image = req.file ? "uploads/" + req.file.filename : "";
 
 const getDoctors = async (req, res) => {
   try {
-    const doctors = await Doctor.find().select("-password"); // Exclude password
+    const doctors = await Doctor.find() // Exclude password
     res.json(doctors);
   } catch (err) {
     res.status(500).json({ error: err.message || "Internal server error" });
