@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const Doctor = require("../Models/doctorModel");
 const dotenv = require("dotenv").config();
 const {upload} = require('../middlewares/fileUploadMiddleware')
-
+  const fs = require("fs");
 const addDoctor = async (req, res) => {
   try {
     console.log("Received Request Body:", req.body); 
@@ -84,10 +84,20 @@ const updateDoctor = async (req, res) => {
 const deleteDoctor = async (req, res) => {
   try{
     const doctor = await Doctor.findByIdAndDelete(req.params.id);
+    const imagePath =  doctor.image; // Get the image path before deletion
+    if  (imagePath) {
+    
+      const path = require('path');
+      const fullPath = path.join(__dirname, '..', imagePath); // Adjust the path as necessary
+      fs.unlink(fullPath, (err) => {
+        if (err) console.error("Error deleting image:", err);
+        else console.log("Image deleted successfully:", fullPath);
+      });
+    }
     if(!doctor){
       return res.status(404).json({message: "Doctor not found"})
     }
-    res.json({message: "Doctor deleted successfully"})
+    res.json({message: "Doctor deleted successfuvb lly"})
   } catch (err) {
     res.status(400).json({ error: err.message || "Doctor not found" });
   }
