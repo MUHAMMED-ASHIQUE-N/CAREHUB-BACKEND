@@ -11,9 +11,10 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
-app.get("/", (req,res) => {
-  res.send('<h1>hello</h1>')
-})
+app.get("/", (req, res) => {
+  res.redirect("https://carehub-frontend.vercel.app/login"); // Replace with your actual frontend login page URL
+});
+
 
 //routes
 app.use("/api", apiRouter);
