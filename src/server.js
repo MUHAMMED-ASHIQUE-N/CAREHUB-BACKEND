@@ -11,6 +11,10 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
+app.get("/", (req,res) => {
+  res.send('<h1>hello</h1>')
+})
+
 //routes
 app.use("/api", apiRouter);
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
