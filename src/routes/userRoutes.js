@@ -39,4 +39,4 @@ router.get("/me", verifyToken, async (req, res) => {
   }
 });
 
-module.exports = { authRoutes: router };
+module.exports = {  authRoutes: router };

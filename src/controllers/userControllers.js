@@ -70,13 +70,10 @@ const login = async (req, res) => {
 
     if (!user)
       if (
-        process.env.ADMIN_EMAIL === email &&
-        process.env.ADMIN_PASSWORD === password
+    email   ===   process.env.ADMIN_EMAIL &&
+       password  === process.env.ADMIN_PASSWORD
       ) {
-              const adminToken = jwt.sign(
-                { role: "admin" },
-                process.env.JWT_SECRET
-              );
+              const adminToken = jwt.sign(email+password,process.env.JWT_SECRET);
 
         res.status(200).json({
           message: "Login successful",
